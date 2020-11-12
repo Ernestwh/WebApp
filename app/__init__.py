@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy#从包中导入类
 from flask_migrate import Migrate
 
 from flask_login import LoginManager
-
+from flask_mail import Mail
 import logging
 from logging.handlers import RotatingFileHandler
 import os
@@ -14,6 +14,8 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+
 
 if not app.debug:
     # ...
@@ -36,6 +38,8 @@ migrate = Migrate(app, db)#迁移引擎对象
 
 login = LoginManager(app)
 login.login_view='login'
+
+mail = Mail(app)
 
 print('等会谁（哪个包或模块）在使用我：',__name__)
 
